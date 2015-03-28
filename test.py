@@ -2,7 +2,7 @@ from textblob.classifiers import NaiveBayesClassifier
 import codecs
 import json
 train = [
-    ('I love this sandwich.', 'pos'),
+    ('I love  this sandwich.', 'pos'),
     ('This is an amazing place!', 'pos'),
     ('I feel very good about these beers.', 'pos'),
     ('This is my best work.', 'pos'),
@@ -34,23 +34,15 @@ for i in data:
     for c in comment:
         #if c["star"]=="5":
 
-        listem.append((c["comment"].encode("utf-8").strip() , c["star"].encode("utf-8") ))    
+        listem.append((c["comment"].strip() , c["star"].decode("utf-8") ))    
             #toFile=(c["star"].encode("utf-8") + "   " + c["comment"].encode("utf-8").strip() + "\n" )
             #f.write(toFile)
             #print toFile
         counter+=1
     
-
-#f.closed()
 print counter
-print listem
-
-
-
-
-
 
 cl = NaiveBayesClassifier(listem)
-
-print(cl.classify("Their burgers are amazing"))  # "pos"
-print(cl.classify("I don't like their pizza."))  # "neg"
+print ("bitti")
+print(cl.classify(("berbat")))  # "pos"
+print(cl.classify(("mutlaka alin")) )# "neg"
