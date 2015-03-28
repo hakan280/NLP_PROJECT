@@ -37,6 +37,7 @@ http://text-processing.com/demo/sentiment/
 6. Doing first tests 
 7. Getting Results
 
+<Test From Local Computer>
 
 
 
