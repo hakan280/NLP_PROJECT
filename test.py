@@ -1,3 +1,4 @@
+#-*-coding: utf-8 -*-
 from textblob.classifiers import NaiveBayesClassifier
 import codecs
 import json
@@ -20,14 +21,15 @@ test = [
     ("I feel amazing!", 'pos'),
     ('Gary is a friend of mine.', 'pos'),
     ("I can't believe I'm doing this.", 'neg')
-]
+    ]
 
-#f = codecs.open('../hepsi_v3/data.json', "r", encoding="utf-8")
+counter=0
+listem=[]
+""" ------------------JSON PARSER-----------
 with open('../hepsi_v3/data.json') as data_file:    
     data = json.load(data_file)
 print(type(data))
-counter=0
-listem=[]
+
 #f = open('hepsi5', 'w')
 for i in data:
     comment=(i["reviews"])
@@ -39,10 +41,23 @@ for i in data:
             #f.write(toFile)
             #print toFile
         counter+=1
-    
-print counter
+"""
 
+
+# .TXT PARSE 
+f = codecs.open("train_data/test_data", "r", encoding="utf-8")
+for line in f:
+    div=line.split()
+    star=div[0]
+    comment=div[1:]
+    comment=" ".join(comment)
+
+    listem.append((comment, star )) 
+
+
+
+print counter
 cl = NaiveBayesClassifier(listem)
-print ("bitti")
-print(cl.classify(("berbat")))  # "pos"
-print(cl.classify(("mutlaka alin")) )# "neg"
+print(cl.classify(("Ürün çok kullanışlı, tavsiye ederim ")))  
+print(cl.classify(("hemem bozuldu kalitesiz, aldığıma pişmanım")) )
+cl.words()
