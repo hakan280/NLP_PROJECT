@@ -45,19 +45,26 @@ for i in data:
 
 
 # .TXT PARSE 
-f = codecs.open("train_data/test_data", "r", encoding="utf-8")
+f = codecs.open("train_data/train_data", "r", encoding="utf-8")
 for line in f:
     div=line.split()
     star=div[0]
     comment=div[1:]
     comment=" ".join(comment)
-
-    listem.append((comment, star )) 
+    
+    listem.append((comment.lower(), star )) 
 
 
 
 print counter
+print listem[:10]
 cl = NaiveBayesClassifier(listem)
-print(cl.classify(("Ürün çok kullanışlı, tavsiye ederim ")))  
-print(cl.classify(("hemem bozuldu kalitesiz, aldığıma pişmanım")) )
-cl.words()
+
+print(cl.classify((u"Ürün çok kullanışlı, tavsiye ederim ")))  
+print(cl.classify((u"hemem bozuldu kalitesiz, aldığıma pişmanım")) )
+print(cl.classify((u"Ürün iyi ama tek eksiği şarjı az gidiyor, fiyatına göre idare eder")))  
+print(cl.classify(U"kötü"))  
+print(cl.classify((u"Müthiş, görüntü kalitesi mükemmel.")))  
+print(cl.classify((u"Verdiğiniz paraya değer tavsive ederim ")))  
+print(cl.classify((u"çok dandik, işe yaramaz"))) 
+print(cl.classify((u"kalitesiz")))  
